@@ -32,8 +32,14 @@ import sys
 import os
 import argparse
 
-sys.path.append('../scripts/labtainer_student/bin')
-from scripts.labtainer_student.bin import LabtainerLogging, ParseLabtainerConfig, registry
+dir_file = os.path.dirname(os.path.abspath(__file__))
+dir_trunk = os.path.normpath(os.path.join(dir_file, os.pardir))
+student_cwd = os.path.join(dir_trunk, 'scripts/labtainer_student/bin')
+sys.path.append(dir_trunk)
+sys.path.append(student_cwd)
+from scripts.labtainer_student.bin import (LabtainerLogging,
+                                           ParseLabtainerConfig,
+                                           registry)
 '''
 pull a lab's images
 '''
