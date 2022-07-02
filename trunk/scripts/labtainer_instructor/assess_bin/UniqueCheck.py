@@ -39,7 +39,7 @@ from hashlib import md5
 import os
 import re
 import sys
-from . import MyUtil
+import MyUtil
 
 MYHOME = ""
 logfilelist = []

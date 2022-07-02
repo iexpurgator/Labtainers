@@ -45,7 +45,9 @@ import sys
 import subprocess
 import ast
 import string
-import evalBoolean, evalExpress, InstructorLogging
+import evalBoolean
+import evalExpress
+import InstructorLogging
 import hashlib
 
 default_timestamp = 'default-NONE'

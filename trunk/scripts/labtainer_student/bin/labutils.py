@@ -59,11 +59,11 @@ import urllib
 import InspectRemoteReg
 import InspectLocalReg
 ''' assumes relative file positions '''
-dir_file = os.path.dirname(os.path.abspath(__file__))
-dir_bin = os.path.normpath(os.path.join(dir_file, os.pardir))
-dir_lab = os.path.normpath(os.path.join(dir_bin, os.pardir))
-dir_scripts = os.path.normpath(os.path.join(dir_lab, os.pardir))
-sys.path.append(dir_scripts)
+dir_path = os.path.dirname(os.path.abspath(__file__))
+dir_trunk = os.path.normpath(os.path.join(dir_path, os.pardir, os.pardir, os.pardir))
+student_labbin = dir_path.replace('bin', 'lab_bin')
+sys.path.append(dir_trunk)
+sys.path.append(student_labbin)
 from scripts.labtainer_student.lab_bin import ParameterParser
 ''' logger is defined in whatever script that invokes the labutils '''
 global logger
