@@ -56,6 +56,8 @@ import errno
 import registry
 import dockerPull
 import urllib
+import InspectRemoteReg
+import InspectLocalReg
 ''' assumes relative file positions '''
 dir_file = os.path.dirname(os.path.abspath(__file__))
 dir_bin = os.path.normpath(os.path.join(dir_file, os.pardir))
@@ -637,7 +639,7 @@ def HandleVolumes(volume, container):
         try:
             hostv, containerv = m.split(':')
         except:
-            self.lgr.error('Bad mount definition %s' % m)
+            logger.error('Bad mount definition %s' % m)
             exit(1)
         homedir = os.environ['HOME']
         host_path = os.path.join(homedir,
