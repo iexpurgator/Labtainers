@@ -54,6 +54,7 @@ sudo pip3 install --upgrade pip3
 sudo pip3 install docker netaddr parse python-dateutil
 sudo dnf install -y openssh-server 
 sudo dnf install -y xterm
+sudo dnf install -y gonme-terminal
 
 #starts and enables docker
 sudo systemctl start docker

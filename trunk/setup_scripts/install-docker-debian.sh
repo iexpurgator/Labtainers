@@ -26,7 +26,7 @@ type sudo >/dev/null 2>&1 || { echo >&2 "Please install sudo.  Aborting."; exit 
 sudo -v || { echo >&2 "Please make sure user is sudoer.  Aborting."; exit 1; }
 #needed packages for Docker install
 sudo apt-get update
-sudo apt-get -y install apt-transport-https ca-certificates curl gnupg2 software-properties-common 
+sudo apt-get -y install apt-transport-https ca-certificates curl gnupg2 software-properties-common gonme-terminal
 
 #adds Docker�s official GPG Key
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
