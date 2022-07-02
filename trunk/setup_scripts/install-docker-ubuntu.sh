@@ -73,7 +73,7 @@ sudo usermod -aG docker $USER
 #---other packages required by Labtainers
 sudo apt-get -y install python3-pip 
 sudo -H pip3 install --upgrade pip3
-sudo -H pip3 install netaddr parse python-dateutil
+sudo -H pip3 install docker netaddr parse python-dateutil
 sudo apt-get -y install openssh-server
 
 #---Checking if packages have been installed. If not, the system will not reboot and allow the user to investigate.
@@ -119,4 +119,4 @@ fi
 
 exit 0
 
-#Notes: The “-y” after each install means that the user doesn’t need to press “y” in between each package download. The install script is based on this page: https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/
+#Notes: The ï¿½-yï¿½ after each install means that the user doesnï¿½t need to press ï¿½yï¿½ in between each package download. The install script is based on this page: https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/

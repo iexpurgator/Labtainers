@@ -7,6 +7,10 @@ labtainer_dir = os.getenv('LABTAINER_DIR')
 if labtainer_dir is None or not os.path.isdir(labtainer_dir):
     labtainer_dir = '/home/student/labtainer/trunk'
 
+dir_file = os.path.dirname(os.path.abspath(__file__))
+dir_trunk = os.path.normpath(os.path.join(dir_file, os.pardir))
+sys.path.append(dir_trunk)
+
 from scripts.labtainer_student.bin import (LabtainerLogging,
                                            ParseLabtainerConfig,
                                            registry,

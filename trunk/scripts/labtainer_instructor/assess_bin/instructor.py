@@ -52,7 +52,12 @@ import InstructorLogging
 import string
 import subprocess
 import shlex
-from labtainer_student.bin import LabCount
+dir_file = os.path.dirname(os.path.abspath(__file__))
+dir_lab = os.path.normpath(os.path.join(dir_file, os.pardir))
+dir_scripts = os.path.normpath(os.path.join(dir_lab, os.pardir))
+dir_trunk = os.path.normpath(os.path.join(dir_scripts, os.pardir))
+sys.path.append(dir_trunk)
+from scripts.labtainer_student.bin import LabCount
 
 MYHOME = os.getenv('HOME')
 logger = InstructorLogging.InstructorLogging("/tmp/instructor.log")

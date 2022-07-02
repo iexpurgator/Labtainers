@@ -45,15 +45,23 @@ import os
 import sys
 import shutil
 
-from labtainer_student.bin import LabtainerLogging, labutils, ParseStartConfig
-from labtainer_student.lab_bin import ParameterParser
-from assess_bin import evalExpress, GoalsParser, ResultParser
+dir_path = os.path.dirname(os.path.abspath(__file__))
+student_cwd = dir_path.replace('labtainer_instructor', 'labtainer_student')
+instructor_bin = dir_path.replace('bin', 'assess_bin')
+dir_trunk = os.path.normpath(
+    os.path.join(dir_path,
+                 os.pardir,
+                 os.pardir,
+                 os.pardir))
+sys.path.append(dir_trunk)
+sys.path.append(student_cwd)
+sys.path.append(instructor_bin)
 
-instructor_cwd = os.getcwd()
-instructor_bin = os.path.join(instructor_cwd, 'assess_bin')
-student_cwd = instructor_cwd.replace('labtainer_instructor',
-                                     'labtainer_student')
-student_bin = os.path.join(student_cwd, 'lab_bin')
+from scripts.labtainer_student.bin import LabtainerLogging, labutils, ParseStartConfig
+from scripts.labtainer_student.lab_bin import ParameterParser
+from scripts.labtainer_instructor.assess_bin import evalExpress, GoalsParser, ResultParser
+
+instructor_cwd = dir_path
 
 # TEMPORARY PATH - to copy 'config' and 'instr_config' to validate
 TEMPDIR = "/tmp/vallabtainers"

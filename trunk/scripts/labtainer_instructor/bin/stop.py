@@ -45,11 +45,18 @@ import zipfile
 import sys
 import os
 
+dir_path = os.path.dirname(os.path.abspath(__file__))
+student_cwd = dir_path.replace('labtainer_instructor', 'labtainer_student')
+dir_trunk = os.path.normpath(
+    os.path.join(dir_path,
+                 os.pardir,
+                 os.pardir,
+                 os.pardir))
+sys.path.append(dir_trunk)
+sys.path.append(student_cwd)
 instructor_cwd = os.getcwd()
-student_cwd = instructor_cwd.replace('labtainer_instructor',
-                                     'labtainer_student')
-# Append Student CWD to sys.path
-from labtainer_student.bin import labutils, LabtainerLogging
+
+from scripts.labtainer_student.bin import labutils, LabtainerLogging
 import logging
 
 
@@ -67,7 +74,8 @@ def main():
         labutils.logger = LabtainerLogging.LabtainerLogging(
             "labtainer.log",
             labname,
-            "../../config/labtainer.config")
+            os.path.join(dir_trunk,
+                         'config/labtainer.config'))
         lablist.append(labname)
     else:
         labname = "all"
@@ -75,7 +83,8 @@ def main():
         labutils.logger = LabtainerLogging.LabtainerLogging(
             "labtainer.log",
             labname,
-            "../../config/labtainer.config")
+            os.path.join(dir_trunk,
+                         'config/labtainer.config'))
         lablist = labutils.GetListRunningLab()
 
     for labname in lablist:
@@ -84,7 +93,7 @@ def main():
                               (instructor_cwd,
                                student_cwd))
         # Pass 'False' to ignore_stop_error (i.e., do not ignore error)
-        lab_path = os.path.join(os.path.abspath('../../labs'), labname)
+        lab_path = os.path.join(os.path.join(dir_trunk, 'labs'), labname)
         has_running_containers, running_containers_list = labutils.GetRunningContainersList()
         if has_running_containers:
             has_lab_role, labnamelist = labutils.GetRunningLabNames(running_containers_list, "instructor")

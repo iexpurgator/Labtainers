@@ -42,7 +42,20 @@ import time
 import saki
 import pydoc
 
-from labtainer_student.bin import registry, ParseLabtainerConfig, LabtainerLogging, labutils, docgoals
+dir_path = os.path.dirname(os.path.abspath(__file__))
+student_cwd = dir_path.replace('labtainer_instructor', 'labtainer_student')
+instructor_bin = dir_path.replace('bin', 'assess_bin')
+dir_trunk = os.path.normpath(
+    os.path.join(dir_path,
+                 os.pardir,
+                 os.pardir,
+                 os.pardir))
+sys.path.append(dir_trunk)
+sys.path.append(student_cwd)
+sys.path.append(instructor_bin)
+
+from scripts.labtainer_student.bin import registry, ParseLabtainerConfig, LabtainerLogging, labutils
+from scripts.labtainer_instructor.assess_bin import docgoals
 
 FAILURE = 1
 WEB_PORT = 8008
@@ -719,7 +732,8 @@ def main():
 labutils.logger = LabtainerLogging.LabtainerLogging(
     "grader.log",
     'instructor',
-    "../../config/labtainer.config")
+    os.path.join(dir_trunk,
+                 'config/labtainer.config'))
 labutils.logger.info("Begin logging")
 logger = labutils.logger
 if __name__ == '__main__':

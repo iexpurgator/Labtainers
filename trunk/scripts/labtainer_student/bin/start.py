@@ -123,7 +123,14 @@ def showLabs(dirs, path, versions, skip):
 
 def getRev():
     created = ""
-    with open('../../README.md') as fh:
+    dir_path = os.path.dirname(os.path.abspath(__file__))
+    dir_readme = os.path.normpath(
+        os.path.join(dir_path,
+                     os.pardir, # remove ./bin
+                     os.pardir, # remove ./labtainer_student
+                     os.pardir, # remove ./scripts
+                     'README.md'))
+    with open(dir_readme) as fh:
         for line in fh:
             if line.strip().startswith('Distribution created'):
                 created = line.strip()

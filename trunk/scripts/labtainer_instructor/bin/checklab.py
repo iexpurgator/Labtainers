@@ -41,18 +41,25 @@ import glob
 import os
 import sys
 import stat
-from labtainer_student.bin import labutils, LabtainerLogging, ParseStartConfig
+
+dir_path = os.path.dirname(os.path.abspath(__file__))
+student_cwd = dir_path.replace('labtainer_instructor', 'labtainer_student')
+dir_trunk = os.path.normpath(
+    os.path.join(dir_path,
+                 os.pardir,
+                 os.pardir,
+                 os.pardir))
+sys.path.append(dir_trunk)
+sys.path.append(student_cwd)
+
+from scripts.labtainer_student.bin import labutils, LabtainerLogging, ParseStartConfig
 # from assess_bin import evalExpress
 # import getpass
 # import json
 # import shutil
 # import md5
 
-instructor_cwd = os.getcwd()
-instructor_bin = os.path.join(instructor_cwd, "assess_bin")
-student_cwd = instructor_cwd.replace("labtainer_instructor",
-                                     "labtainer_student")
-student_bin = os.path.join(student_cwd, "lab_bin")
+instructor_cwd = dir_path
 
 
 def check_cmdinit(filename):

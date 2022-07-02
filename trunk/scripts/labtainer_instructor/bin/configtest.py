@@ -36,16 +36,28 @@ POSSIBILITY OF SUCH DAMAGE.
 #
 #
 
+from asyncio.log import logger
 import subprocess
 import sys
 import os
-from labtainer_student.bin import labutils, LabtainerLogging
+
+dir_path = os.path.dirname(os.path.abspath(__file__))
+student_cwd = dir_path.replace('labtainer_instructor', 'labtainer_student')
+dir_trunk = os.path.normpath(
+    os.path.join(dir_path,
+                 os.pardir,
+                 os.pardir,
+                 os.pardir))
+sys.path.append(dir_trunk)
+sys.path.append(student_cwd)
+from scripts.labtainer_student.bin import labutils, LabtainerLogging
 
 instructor_cwd = os.getcwd()
 student_cwd = instructor_cwd.replace("labtainer_instructor",
                                      "labtainer_student")
 
-CONFIGTEST_ROOT = os.path.abspath("../../testsets/validate")
+CONFIGTEST_ROOT = os.path.join(dir_trunk,
+                         'testsets/validate')
 
 
 def usage():
@@ -73,7 +85,8 @@ def main():
         labutils.logger = LabtainerLogging.LabtainerLogging(
             "configtest.log",
             labname,
-            "../../config/labtainer.config")
+            os.path.join(dir_trunk,
+                         'config/labtainer.config'))
         labutils.logger.info("Begin logging configtest.py for %s lab" % labname)
         labutils.logger.debug("Current test name is (%s)" % labname)
         fulllabname = os.path.join(CONFIGTEST_ROOT, labname)
@@ -116,7 +129,11 @@ def main():
                                       labtainer_string.strip())
                 found_error = True
                 break
-
+    labutils.logger = LabtainerLogging.LabtainerLogging(
+            "configtest.log",
+            "configtest",
+            os.path.join(dir_trunk,
+                         'config/labtainer.config'))
     if found_error:
         labutils.logger.error("Validate test encountered an error!")
     else:

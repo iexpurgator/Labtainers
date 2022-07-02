@@ -83,9 +83,12 @@ class LabtainerLogging():
                 logfilename = logfilename[5:]
             logfilename = os.path.join(ldir, 'logs', logfilename)
         try:
-            os.makedirs(os.path.dirname(logfilename))
-        except:
-            pass
+            os.makedirs(os.path.dirname(logfilename), 0o777)
+        except Exception as e:
+            if e.__class__.__name__ == 'FileExistsError':
+                pass
+            else:
+                raise e
         #file_handler = logging.FileHandler(logfilename)
         file_handler = RotatingFileHandler(logfilename,
                                            maxBytes=6000000,

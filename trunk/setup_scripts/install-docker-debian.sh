@@ -28,7 +28,7 @@ sudo -v || { echo >&2 "Please make sure user is sudoer.  Aborting."; exit 1; }
 sudo apt-get update
 sudo apt-get -y install apt-transport-https ca-certificates curl gnupg2 software-properties-common 
 
-#adds Docker’s official GPG Key
+#adds Dockerï¿½s official GPG Key
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
 
 #used to verify matching Key ID (optional)
@@ -52,7 +52,7 @@ sudo systemctl enable docker
 #additional packages needed for labtainers
 sudo apt-get -y install python3-pip 
 sudo pip3 install --upgrade pip3 
-sudo pip3 install netaddr parse python-dateutil
+sudo pip3 install docker netaddr parse python-dateutil
 sudo apt-get -y install openssh-server
 
 #---Checking if packages have been installed. If not, the system will not reboot and allow the user to investigate.
@@ -97,4 +97,4 @@ fi
 
 exit 0
 
-#Notes: The “-y” after each install means that the user doesn’t need to press “y” in between each package download. The install script is based on this page: https://docs.docker.com/engine/installation/linux/docker-ce/debian/
+#Notes: The ï¿½-yï¿½ after each install means that the user doesnï¿½t need to press ï¿½yï¿½ in between each package download. The install script is based on this page: https://docs.docker.com/engine/installation/linux/docker-ce/debian/

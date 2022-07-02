@@ -39,7 +39,7 @@ docker_package=docker
 #---initial check for packages already installed otherwise install them
 #---installs python modules directly through Arch official repos
 #---prevents environment conflicts given the Arch rolling release model
-declare -a packagelist=("ca-certificates" "curl" "device-mapper" "$docker_package" "python-pip" "python-dateutil" "python-parse" "python-netaddr" "gnupg" "lvm2" "openssh" "xterm")
+declare -a packagelist=("ca-certificates" "curl" "device-mapper" "$docker_package" "python-pip" "python-docker" "python-dateutil" "python-parse" "python-netaddr" "gnupg" "lvm2" "openssh" "xterm")
 for i in "${packagelist[@]}"
 do
 packagecheck=$(pacman -Q $i 2> /dev/null)
@@ -98,4 +98,4 @@ fi
 
 exit 0
 
-#Notes: The “-y” after each install means that the user doesn’t need to press “y” in between each package download. The install script is based on this page: https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/
+#Notes: The ï¿½-yï¿½ after each install means that the user doesnï¿½t need to press ï¿½yï¿½ in between each package download. The install script is based on this page: https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/

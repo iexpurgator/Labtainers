@@ -41,10 +41,19 @@ import getpass
 import time
 import imp
 
-from labtainer_student.bin import labutils, LabtainerLogging, ParseLabtainerConfig
+dir_path = os.path.dirname(os.path.abspath(__file__))
+student_cwd = dir_path.replace('labtainer_instructor', 'labtainer_student')
+dir_trunk = os.path.normpath(
+    os.path.join(dir_path,
+                 os.pardir,
+                 os.pardir,
+                 os.pardir))
+sys.path.append(dir_trunk)
+sys.path.append(student_cwd)
+from scripts.labtainer_student.bin import labutils, LabtainerLogging, ParseLabtainerConfig
 import logging
 
-gradelab = imp.load_source('gradelab', 'bin/gradelab')
+gradelab = imp.load_source('gradelab', os.path.join(dir_path, 'gradelab'))
 instructor_cwd = os.getcwd()
 student_cwd = instructor_cwd.replace('labtainer_instructor',
                                      'labtainer_student')
@@ -59,7 +68,7 @@ def usage():
     sys.exit(1)
 
 
-LABS_ROOT = os.path.abspath('../../labs')
+LABS_ROOT = os.path.join(dir_trunk, 'labs')
 
 
 def compareGrades(GradesGold, Grades, logger):
@@ -202,7 +211,8 @@ def main():
         labutils.logger = LabtainerLogging.LabtainerLogging(
             "labtainer-regress.log",
             labname,
-            "../../config/labtainer.config")
+            os.path.join(dir_trunk,
+                         'config/labtainer.config'))
         labutils.logger.info("Begin logging regresstest.py for %s lab" %
                              labname)
         labutils.logger.debug("Current name is (%s)" % labname)

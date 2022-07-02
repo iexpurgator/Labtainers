@@ -39,7 +39,7 @@ from hashlib import md5
 import os
 import random
 import sys
-import ParameterizeLogging
+from . import ParameterizeLogging
 
 
 class ParameterParser():

@@ -228,7 +228,7 @@ def main():
                         pass
     zipoutput.close()
 
-    os.chmod(TempOutputName, 666)
+    os.chmod(TempOutputName, 0o666)
 
     # Rename from temp zip file to its proper location
     os.rename(TempOutputName, OutputName)

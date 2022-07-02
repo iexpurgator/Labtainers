@@ -7,7 +7,17 @@ import zipfile
 import shutil
 import glob
 from io import BytesIO
-from labtainer_student.bin import ParseLabtainerConfig, labutils, LabtainerLogging
+
+dir_path = os.path.dirname(os.path.abspath(__file__))
+student_cwd = dir_path.replace('labtainer_instructor', 'labtainer_student')
+dir_trunk = os.path.normpath(
+    os.path.join(dir_path,
+                 os.pardir,
+                 os.pardir,
+                 os.pardir))
+sys.path.append(dir_trunk)
+sys.path.append(student_cwd)
+from scripts.labtainer_student.bin import ParseLabtainerConfig, labutils, LabtainerLogging
 
 instructor_cwd = os.getcwd()
 student_cwd = instructor_cwd.replace('labtainer_instructor',

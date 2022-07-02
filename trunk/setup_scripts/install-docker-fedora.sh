@@ -51,7 +51,7 @@ sudo dnf -y install docker-ce
 #additional packages needed
 sudo dnf -y install python3-pip
 sudo pip3 install --upgrade pip3
-sudo pip3 install netaddr parse python-dateutil
+sudo pip3 install docker netaddr parse python-dateutil
 sudo dnf install -y openssh-server 
 sudo dnf install -y xterm
 
@@ -107,4 +107,4 @@ fi
 
 exit 0
 
-#Notes: The “-y” after each install means that the user doesn’t need to press “y” in between each package download. The install script is based on this page: https://docs.docker.com/engine/installation/linux/docker-ce/fedora/
+#Notes: The ï¿½-yï¿½ after each install means that the user doesnï¿½t need to press ï¿½yï¿½ in between each package download. The install script is based on this page: https://docs.docker.com/engine/installation/linux/docker-ce/fedora/

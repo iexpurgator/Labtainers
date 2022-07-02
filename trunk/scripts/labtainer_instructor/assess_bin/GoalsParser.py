@@ -39,7 +39,17 @@ import os
 import random
 import sys
 import MyUtil
-from labtainer_student.bin import ParameterParser
+
+dir_path = os.path.dirname(os.path.abspath(__file__))
+student_cwd = dir_path.replace('labtainer_instructor/assess_bin', 'labtainer_student/bin')
+dir_trunk = os.path.normpath(
+    os.path.join(dir_path,
+                 os.pardir,
+                 os.pardir,
+                 os.pardir))
+sys.path.append(dir_trunk)
+sys.path.append(student_cwd)
+from scripts.labtainer_student.lab_bin import ParameterParser
 
 MYHOME = ""
 answer_tokens = ['result', 'parameter', 'parameter_ascii']

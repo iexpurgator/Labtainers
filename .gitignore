@@ -1,0 +1,8 @@
+*.gz
+*.zip
+*.swp
+*.pyc
+*.log
+*.tar
+.vscode/
+/UI/MainUI/target/
