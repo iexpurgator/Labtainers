@@ -94,6 +94,7 @@ if __name__ == '__main__':
     group.add_argument('-u', '--updates', action='store_true', default=False, help='Update IModules for this installation.')
     group.add_argument('-d', '--delete', action='store_true', default=False, help='Delete all IModule URLs (will not affect existing labs).')
     args = parser.parse_args()
+    print(args.path)
     if args.list:
         if os.path.isfile(imodule_path):
             with open(imodule_path) as fh:
@@ -116,7 +117,7 @@ if __name__ == '__main__':
             print('No IModules to delete.')
     elif args.path is not None and args.path != 'NONE':
         try:
-            makedirs(os.dirname(imodule_path))
+            os.makedirs(os.path.dirname(imodule_path))
         except:
             pass
         with open(imodule_path, 'a') as fh:
